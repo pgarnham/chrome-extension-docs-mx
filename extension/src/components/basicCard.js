@@ -8,16 +8,22 @@ import Typography from '@mui/material/Typography';
 //import { GoogleLogin } from 'react-google-login';
 import { useGoogleAuth } from './googleAuth';
 import TextField from '@mui/material/TextField';
-import DocUrl from './docUrl';
+//import DocUrl from './docUrl';
+import DocUrl from './fakeUrl';
 
 
 export default function BasicCard() {
     const { signIn, signOut, googleUser, isSignedIn } = useGoogleAuth();
     const [opId, setOpId] = React.useState(null);
     const [finalOpId, setFinalOpId] = React.useState(null);
+    const [fakeUrl, setFakeUrl] = React.useState(null);
 
     const callGetUrl = () => {
         setFinalOpId(opId);
+    }
+
+    const getFakeUrl = () => {
+        setFakeUrl(opId);
     }
 
   return (
