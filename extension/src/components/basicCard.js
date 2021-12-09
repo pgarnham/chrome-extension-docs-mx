@@ -1,33 +1,27 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-//import { GoogleLogin } from 'react-google-login';
-import { useGoogleAuth } from './googleAuth';
+import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-//import DocUrl from './docUrl';
-import DocUrl from './fakeUrl';
+import DocUrl from './docsUrl';
 
 
 export default function BasicCard() {
-    const { signIn, signOut, googleUser, isSignedIn } = useGoogleAuth();
-    const [opId, setOpId] = React.useState(null);
-    const [finalOpId, setFinalOpId] = React.useState(null);
-    const [fakeUrl, setFakeUrl] = React.useState(null);
+    const [opId, setOpId] = useState(null);
+    const [pmAddress, setPmAddress] = useState(null);
+    const [finalOpId, setFinalOpId] = useState(null);
 
     const callGetUrl = () => {
         setFinalOpId(opId);
     }
 
-    const getFakeUrl = () => {
-        setFakeUrl(opId);
-    }
 
   return (
-    <Card sx={{ maxWidth: 645 }}>
+    <Card sx={{ maxWidth: 645, p: 2 }}>
       <CardMedia
         component="img"
         height="100"
@@ -36,16 +30,19 @@ export default function BasicCard() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Acción Rápida
+          Documentos Por Operación MX
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Template de Extensión de Chrome para apoyar con alguna acción rápida
+          Ingresa el id de la Operación y la dirección de la persona moral para generar los documentos
         </Typography>
       </CardContent>
+      <Stack spacing={2}>
       <TextField id="outlined-basic" label="Id Operación" variant="outlined" onChange={e => setOpId(e.target.value)} />
+      <TextField id="outlined" label="Dirección PM" variant="outlined" onChange={e => setPmAddress(e.target.value)} />
+      </Stack>
       <CardActions>
         <Button onClick={callGetUrl} variant="contained" size="small">Generar Documentos</Button>
-        <DocUrl opId={finalOpId}></DocUrl>
+        <DocUrl opId={finalOpId} pmAddress={pmAddress}></DocUrl>
       </CardActions>
     </Card>
   );
