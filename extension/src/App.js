@@ -6,11 +6,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Container sx={{ p: 2, bgcolor: 'background.paper' }} maxWidth="lg">
+        <Container style={{ backgroundColor: '#ffffff'}}>
           <BasicCard></BasicCard> 
         </Container>
-      </header>
     </div>
   );
 }

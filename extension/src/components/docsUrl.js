@@ -22,9 +22,16 @@ export default function DocUrl(props) {
       if (props.opId != null && firstTime){
         setLinkState('generating');
         setFirstTime(false);
-        axios.get(baseURL + props.opId + '&token=' + apiToken + '&pm_address=' + props.pmAddress).then((response) => {
-            showButton(response.data.documentURL);
-        });
+
+        axios.post(baseURL, {
+          pmAddress: props.pmAddress,
+          opId: props.opId,
+          token: apiToken,
+          contractDate: props.contractDate.toISOString().slice(0, 10)
+        }).then(response => {
+          console.log("La response es: ", response);
+          showButton(response.data.documentUrl);
+        })
       }
   });
 
