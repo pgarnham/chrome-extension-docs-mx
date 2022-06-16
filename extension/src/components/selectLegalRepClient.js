@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 
-export default function SelectLegalRepDocuments(props) {
+export default function SelectLegalRepClient(props) {
   return (
     <FormControl component="fieldset"
                  value={props.value}>
@@ -41,16 +41,6 @@ export default function SelectLegalRepDocuments(props) {
         <FormControlLabel
           control={<Checkbox checked={props.value.confirmacion} onChange={(e, value) => {props.handleChange(e, value, props.index)}} name="confirmacion" />}
           label="Confirmación"
-          labelPlacement="end"
-        />
-        <FormControlLabel
-          control={<Checkbox checked={props.value.pagare} onChange={(e, value) => {props.handleChange(e, value, props.index)}} name="pagare" />}
-          label="Pagaré"
-          labelPlacement="end"
-        />
-        <FormControlLabel
-          control={<Checkbox checked={props.value.aval} onChange={(e, value) => {props.handleChange(e, value, props.index)}} name="aval" />}
-          label="Aval"
           labelPlacement="end"
         />
       </FormGroup>

@@ -26,7 +26,9 @@ export default function BasicCard() {
     const [finalOpId, setFinalOpId] = useState(null);
     const [contractDate, setContractDate] = useState(new Date())
     const [legalRepsDocsConfiguration, setLegalRepsDocsConfiguration] = useState([])
-    const [loadingLegalReps, setLoadingLegalReps] = useState(false)
+    const [loadingLegalReps, setLoadingLegalReps] = useState(false);
+    const [orderType, setOrderType] = useState('');
+
 
     const callGetUrl = () => {
         setFinalOpId(opId);
@@ -56,23 +58,26 @@ export default function BasicCard() {
             legalRepDocuments: {
               "solicitud": false,
               "confirmacion": false,
-              "pagare": false
+              "pagare": false,
+              "aval": false
             }
           }
         })
         setLegalRepsDocsConfiguration(legalReps)
         setLoadingLegalReps(false)
+        setOrderType(response.data.orderType);
       })
     }
 
 
   return (
     <Card sx={{ maxWidth: 745, p: 2 }}>
+      <br></br>
       <CardMedia
         component="img"
-        image="logo-horizontal.png"
+        image="xepelin horizontal.png"
         alt="green iguana"
-        style={{'maxHeight': '40px', 'maxWidth': '300px'}}
+        style={{'maxHeight': '100px', 'maxWidth': '350px'}}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -105,7 +110,8 @@ export default function BasicCard() {
         />
       </LocalizationProvider>
       <LegalRepsConfiguration legalReps={legalRepsDocsConfiguration}
-                              handleChange={handleLegalRepsDocuments}></LegalRepsConfiguration>
+                              handleChange={handleLegalRepsDocuments}
+                              orderType={orderType}></LegalRepsConfiguration>
       </Stack>
       <CardActions>
         <Button onClick={callGetUrl} variant="contained" size="small">Generar Documentos</Button>
